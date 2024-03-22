@@ -39,9 +39,25 @@ create table clientes(
     constraint clientes_pk primary key(id)
 );
 
-alter table clientes add uf char(2) default 'RJ';
-alter table clientes add dia int default '01';
-alter table clientes add mes int default '01';
+alter table clientes
+add uf char(2) default 'RJ';
+
+--fixação ao adicionar dia e mes
+alter table clientes
+add dia int default '01',
+add mes int default '01';
+
+desc clientes;
+
+--fixação regras
+alter table clientes
+add constraint CHK_dia check (dia>=1 and dia<=31),
+add constraint CHK_mes check (mes>=1 and mes<=12);
+
+
+
+--alter table produtos
+--modify unidades varchar(50) default 'unidades';
 
 
 
@@ -49,9 +65,9 @@ alter table clientes add mes int default '01';
 -- definindo o usuario
 
 git init
-git config --global user.name ""
-git config --global user.email "vinibm@otlook.com"
+git config --global user.name "V-ny"
+git config --global user.email "vinibm@outlook.com"
 git add .
-git commit -m ""
+git commit -m "aula do dia 21/03"
 git remote add origin
 git push -u origin master
